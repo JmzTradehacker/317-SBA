@@ -41,4 +41,37 @@ class Vehicle {
     console.log(`The ${vehicle.make} ${vehicle.model} is currently ${vehicle.status}.`);
   }
   
+  // Part 3: Generic Class NCycle
+class NCycle<T> {
+    make: T | T[];
+    model: T | T[];
   
+    constructor(make: T | T[], model: T | T[]) {
+      this.make = make;
+      this.model = model;
+    }
+  
+    // Method to print information based on index
+    print(index: number = 0): void {
+      if (Array.isArray(this.make) && Array.isArray(this.model)) {
+        if (this.make[index] && this.model[index]) {
+          console.log(`This NCycle has a ${this.make[index]} ${this.model[index]} at index ${index}.`);
+        } else {
+          console.log("This NCycle was not created properly.");
+        }
+      } else {
+        console.log(`This is a ${this.make} ${this.model} NCycle.`);
+      }
+    }
+  
+    // Method to print all makes and models if they are arrays
+    printAll(): void {
+      if (Array.isArray(this.make) && Array.isArray(this.model)) {
+        this.make.forEach((m, index) => {
+          console.log(`This NCycle has a ${m} ${this.model[index]} at index ${index}.`);
+        });
+      } else {
+        console.log(`This is a ${this.make} ${this.model} NCycle.`);
+      }
+    }
+  }
